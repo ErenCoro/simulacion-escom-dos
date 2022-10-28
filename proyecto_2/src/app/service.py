@@ -29,7 +29,7 @@ class Link_pocket(BaseModel):
 async def link(data: Link_perceptron):
     url = data.data_url
     weight = perceptron_train(url, ['label'])
-    return weight/0
+    return weight
 
 
 @app.post("/linear/pla/predict")
@@ -37,7 +37,7 @@ async def perceptron(test: Weight):
     weight_perceptron = test.model_weights
     features_perceptron = test.input_data
     labels =  perceptron_and_pocket_test(features_perceptron, weight_perceptron)
-    return labels/0
+    return labels
 
 
 @app.post("/linear/pocket/train")
@@ -45,7 +45,7 @@ async def link(data: Link_pocket):
     url = data.data_url
     max_iters = data.max_iters
     weight_pocket = pocket_train(url, ['label'], max_iters = max_iters)
-    return weight_pocket/0
+    return weight_pocket
 
 
 @app.post("/linear/pocket/predict")
@@ -53,6 +53,6 @@ async def pocket(test: Weight):
     weight_pocket = test.model_weights
     features_pocket = test.input_data
     labels =  perceptron_and_pocket_test(features_pocket, weight_pocket)
-    return labels/0
+    return labels
 
 
